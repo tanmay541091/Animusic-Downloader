@@ -1,0 +1,55 @@
+#make sure you have ffmpeg installed in environmental path
+
+>>>Extracted metadata from MAL
+>>>Saved spotify links for each song and made it into a sheet
+>>>Wrote a function that downloads each song and stores in nested folders based on metadata (as a workaround)
+>>>separated songs to be downloaded from yt
+>>>Wrote a function to grab yt links of songs
+>>>Wrote a function for concatenated youtube songs downloads as well
+>>>Wrote a simple function to account for filepath issues
+>>>Added a status column and modified spotify command to not have unnecessary running of code
+>>>Corrected a few spotify errors, one of them just needed a logger so I added it.
+
+
+Road Ahead:
+Whenever I re-export from mal, we'll need to create a temporary csv of songs of new entries and also songs with non spotify links (so we can re grab the spotify links if the songs released later). We operate on this temp csv BUT update links and save status on the old db itself. 
+new_mal -> new_sheet
+new_sheet -> new_songsheet
+(new_songsheet - old_songsheet) and (old_songsheet.youtube) -> new_link_sheet
+new_link_sheet -> new_songs and (status, spot_lin -> old_songsheet)
+
+Leave the sus tag and just manually go through each link rather than wasting more time on trying to find errorfree links. 
+Or alternatively, find a tool that can make a yt playlist out of the yt links and see there, better visibility and can delete links right away.
+
+Some downloaded spotify songs are absurdly long/large. Because they're country locked. 
+#Find a way to look for them and not download them so you can either get vpn or switch to yt. 
+
+After all of this fixed, manually go through the tags to fix name errors arising majorly due to : being changed to _ instead of - and bracketed names and stuff so that filename isn't too long. Change this in the ValidFile function itself, mistake that I downloaded songs without changing. For brackets, you're fucked. That's just mal being inconsistent. 
+#Maybe there's a way to map a .csv of song names and artists to change them, look into mp3tag features. 
+
+Entries that dont have a season will be missing years. Reenter them too.
+
+After all of this, it's still not guaranteed that you got all the songs. There will be some insert songs you missed because they weren't added on mal. God bless how you're gonna sort that out. Maybe we could hit up vndb/ann/other more valid anime databases. I'd already done all the html stuff by the time I realized this so I didn't want to turn back. Half bread is still better than no bread.
+
+
+Album  = Season
+Genre  = Op/Ed
+Artist = Artist
+Title  = name
+
+In mp3tag:
+filename to tag
+%Year%\%Album%\%Comment%\%Genre%\%Artist%\%Title%\%dummy%
+
+tag to filename
+Finale\%Comment% - %Title% - %Artist%
+
+filename to tag
+%title%
+
+then remove all seasons for years before 2018
+then remove all track numbers and disc id, date and unknown shit
+
+
+2021	Opening Theme	Omoide Shiritori (おもいでしりとり)	DIALOGUE+	https://www.youtube.com/watch?v=1GMar6F_ovY
+2021	Ending Theme	Omoide Shiritori (おもいでしりとり)	DIALOGUE+	https://open.spotify.com/track/21I2N3whjE3lanhe0CuJNH
